@@ -14,7 +14,7 @@
     "redux": "^4.0.1"
   },
   "scripts": {
-    "dev": "react-scripts build && node server",
+    "watch": "react-scripts build && node server",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
