@@ -3,50 +3,51 @@ import React ,{Fragment} from 'react'
 import { Layout , Menu , Avatar , Icon } from 'antd';
 import {  NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom';
-
+import { connect } from 'react-redux'
 const { Header , Sider} = Layout;
 const { SubMenu } = Menu
 
-const avatar = `https://randomuser.me/api/portraits/women/68.jpg`
 
-const logout = () => {
-  console.log(`logout`);
-  
+
+export const NavBar = ({history,currentUser}) =>  {
+  const  logout = () => {
+     localStorage.removeItem("user")
+     history.push('/')
+  }
+  return(
+    <Header style={{ background: '#fff', padding: 0 }}>
+
+        <Menu key="user" mode="horizontal" onClick={logout} style={{ float: "right"}}>
+        <SubMenu
+          title={
+            <Fragment>
+              <span style={{ color: '#999', marginRight: 4 }}>
+                <span>Hi,</span>
+              </span>
+              <span>{currentUser.name}</span>
+              <Avatar style={{ marginLeft: 8 }} src={currentUser.image} />
+            </Fragment>
+          }
+        >
+          <Menu.Item key="SignOut">
+            <span >Sign out</span>
+          </Menu.Item>
+        </SubMenu>
+      </Menu>
+
+    </Header>
+  )
 }
-
-
-
-
-export const NavBar = ({history}) => (
-  <Header style={{ background: '#fff', padding: 0 }}>
-
-      
-      
-      <Menu key="user" mode="horizontal" onClick={() => {
-        localStorage.removeItem("user")
-        history.push('/')
-      }} style={{ float: "right"}}>
-      <SubMenu
-        title={
-          <Fragment>
-            <span style={{ color: '#999', marginRight: 4 }}>
-              <span>Hi,</span>
-            </span>
-            <span>muang</span>
-            <Avatar style={{ marginLeft: 8 }} src={avatar} />
-          </Fragment>
-        }
-      >
-        <Menu.Item key="SignOut">
-          <span >Sign out</span>
-        </Menu.Item>
-      </SubMenu>
-    </Menu>
-
-  </Header>
-)
-
-export  default withRouter(NavBar)
+const mapStateToProps =  (state) => {
+  return {
+    message: 'This is message from mapStateToProps',
+    isLogin: localStorage.getItem("user") ? true : false,
+    auth: state.authentication,
+    currentUser: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
+  }
+}
+const AppNavBar = connect(mapStateToProps)(NavBar)
+export  default withRouter(AppNavBar)
 
 export const LeftNav = () => {
   
