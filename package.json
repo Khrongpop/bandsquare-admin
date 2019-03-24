@@ -1,9 +1,11 @@
 {
-  "name": "hello-react",
+  "name": "Bandsqure-Admin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "antd": "^3.15.1",
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
@@ -12,6 +14,7 @@
     "redux": "^4.0.1"
   },
   "scripts": {
+    "dev": "react-scripts build && node server",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

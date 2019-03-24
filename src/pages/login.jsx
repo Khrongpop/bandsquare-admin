@@ -14,7 +14,7 @@ const Login = ({history,isLogin,counter,dispatch}) => {
 
     const [user, setValues] = useState({ 
         name: '',
-        pass: '' 
+        password: '' 
     });
 
     const updateField = e => {
@@ -43,7 +43,7 @@ const Login = ({history,isLogin,counter,dispatch}) => {
                             </Form.Item>
 
                             <Form.Item>
-                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password"  name="pass" onChange={updateField} />
+                                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password"  name="password" onChange={updateField} />
                             </Form.Item>
 
                             <Form.Item>
