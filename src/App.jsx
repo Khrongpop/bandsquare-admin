@@ -12,12 +12,8 @@ import { Router } from './routers'
 
 
 const App = () => (
-
-
       <Layout>
-         
               <Router/>
-         
       </Layout>
 )
 

@@ -8,4 +8,11 @@ export const decrement = (score = -1) => ({
   score
 })
 
+export const login = (user) => ({
+  type: 'LOGIN',
+  user
+})
 
+export const logout = () => ({
+  type: 'LOGIN',
+})
