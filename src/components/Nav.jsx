@@ -2,22 +2,30 @@
 import React ,{Fragment} from 'react'
 import { Layout , Menu , Avatar , Icon } from 'antd';
 import {  NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+
 const { Header , Sider} = Layout;
 const { SubMenu } = Menu
 
 const avatar = `https://randomuser.me/api/portraits/women/68.jpg`
 
-const handleClickMenu = () => {
-  console.log(`object`);
+const logout = () => {
+  console.log(`logout`);
+  
 }
 
 
-export const NavBar = () => (
+
+
+export const NavBar = ({history}) => (
   <Header style={{ background: '#fff', padding: 0 }}>
 
       
       
-      <Menu key="user" mode="horizontal" onClick={handleClickMenu} style={{ float: "right"}}>
+      <Menu key="user" mode="horizontal" onClick={() => {
+        localStorage.removeItem("user")
+        history.push('/')
+      }} style={{ float: "right"}}>
       <SubMenu
         title={
           <Fragment>
@@ -30,7 +38,7 @@ export const NavBar = () => (
         }
       >
         <Menu.Item key="SignOut">
-          <span>Sign out</span>
+          <span >Sign out</span>
         </Menu.Item>
       </SubMenu>
     </Menu>
@@ -38,6 +46,7 @@ export const NavBar = () => (
   </Header>
 )
 
+export  default withRouter(NavBar)
 
 export const LeftNav = () => {
   

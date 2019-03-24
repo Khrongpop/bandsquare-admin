@@ -1,15 +1,24 @@
-import React  from 'react'
+import React ,{useEffect}  from 'react'
 import { Layout, } from 'antd';
-
-import { NavBar , LeftNav} from '../components/Nav'
+import NavBar , {LeftNav} from '../components/Nav'
+import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
 const { Content } = Layout;
   
 
-export default  (props) => {
+const App =  ({children,history}) => {
 
-    
+    useEffect(() => {
+        let isLogin = localStorage.getItem("user") ? true : false
+
+        console.log(`isLogin`,isLogin)
+        if(!isLogin) {
+            history.push('/');
+        }
+
+    });
+
     return (
         
         <Layout>
@@ -20,11 +29,15 @@ export default  (props) => {
                 margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
             }}
             >
-                {props.children}
+                {children}
             </Content>
             </Layout>
         </Layout>
     )
   }
+
+  export default withRouter(App)
+
+  
   
   

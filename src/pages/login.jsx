@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
 import { authentication } from '../actions'
 const {  Content } = Layout;
-const Login = ({history,dispatch,isLogin}) => {
+const Login = ({history,dispatch,isLogin,auth}) => {
 
     const  handleSubmit = (e) => {
         console.log(`user`,user);
@@ -28,7 +28,10 @@ const Login = ({history,dispatch,isLogin}) => {
         if(isLogin) {
             history.push('/users');
         }
-    },[]);
+
+        console.log(`auth`,auth)
+
+    });
 
     const updateField = e => {
         setValues({
@@ -40,12 +43,12 @@ const Login = ({history,dispatch,isLogin}) => {
 
     return (
         <Layout style={{height:"100vh" , padding: '25vh 0'}}>
-            <Content> 
-                <center>
+            <Content> {auth}
+                <center> 
                     <Card style={{ width: 450 }} title="BandSquare Admin">
                         <form  className="login-form" onSubmit={handleSubmit}>
                         
-                            <Form.Item>
+                            <Form.Item> 
                                 <Input prefix={<Icon type="user"  style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" 
                                     value={user.name} onChange={updateField} name="name" />
                                 
@@ -75,6 +78,7 @@ const mapStateToProps =  (state) => {
     return {
       message: 'This is message from mapStateToProps',
       isLogin: localStorage.getItem("user") ? true : false,
+      auth: state.authentication,
       counter: state.counters || 0
     }
   }

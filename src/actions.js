@@ -16,14 +16,13 @@ export const login = (user) => ({
 })
 
 export const logout = () => ({
-  type: 'LOGIN',
+  type: 'LOGOUT',
 })
 
 export const authentication = (user,dispatch) => {
     axios.post(`https://muangthesisapi.herokuapp.com/auth/login`,user)
       .then((response) =>{
           console.log(response);
-          console.log(response.data);
           dispatch(login(response.data));
       })
       .catch((error) => {
