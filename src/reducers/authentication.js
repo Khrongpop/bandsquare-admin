@@ -7,13 +7,10 @@ export default (state = `false`,action) => {
     switch (action.type) {
       case 'LOGIN':
         console.log(`user from action `,action.user)
-        // let res = axios.post(`login`,action.user).then((result) => result.data)
-        axios.get(`https://muangthesisapi.herokuapp.com/band/bands`,{headers: {
-          'Access-Control-Allow-Origin': '*',
-        }}).then((result) => { console.log(result.data)})
-        // console.log(res);
-        return state = `true`
+        localStorage.setItem("user", JSON.stringify(action.user))
+        return state = JSON.stringify(action.user)
       case 'LOGOUT':
+        localStorage.removeItem("user")
         return state = `false`
       default:
         return state 

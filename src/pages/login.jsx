@@ -3,13 +3,18 @@ import { Form, Icon, Input, Button, Card ,Layout} from 'antd';
 import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
-import { login } from '../actions'
+import { login ,authentication } from '../actions'
 const {  Content } = Layout;
 const Login = ({history,isLogin,counter,dispatch}) => {
 
     const  handleSubmit = (e) => {
         console.log(`user`,user);
-        dispatch(login(user))
+        let parm = new FormData()
+        parm.append("name", user.name);
+        parm.append("password", user.password);
+        // dispatch(login(parm,dispatch))
+        // dispatch(authentication(parm))
+        authentication(parm,dispatch)
     }
 
     const [user, setValues] = useState({ 
@@ -31,7 +36,7 @@ const Login = ({history,isLogin,counter,dispatch}) => {
 
     return (
         <Layout style={{height:"100vh" , padding: '25vh 0'}}>
-            <Content>  {isLogin}
+            <Content>  {isLogin} {localStorage.getItem("user") }
                 <center>
                     <Card style={{ width: 450 }} title="BandSquare Admin">
                         <form  className="login-form" onSubmit={handleSubmit}>
