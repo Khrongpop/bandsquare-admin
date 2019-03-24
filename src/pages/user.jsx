@@ -3,8 +3,7 @@
 import React , {useReducer} from 'react'
 import Layout from '../layouts/default'
 import { Table, Divider, Tag } from 'antd';
-import { initialState , reducer}  from '../store/index';
-import { Counter } from '../components/Counter.js'
+
 
 const columns = [{
     title: 'Name',
@@ -66,17 +65,14 @@ const columns = [{
     tags: ['cool', 'teacher'],
   }];
 
-//   ReactDOM.render(<Table columns={columns} dataSource={data} />, mountNode);
 
 export const User = () => {
   
-  const [{  isFetching , count }, dispatch ] = useReducer(reducer, initialState);
+  
   return (
   
   <Layout>
-  <Counter message="Home"/>
-    {count}
-    <Table dataSource={dataSource} columns={columns} />
+      <Table dataSource={dataSource} columns={columns} />
   </Layout>
 )}
 

@@ -11,13 +11,32 @@ const Post = () => <h1>Post</h1>
 const Project = () => <h1>Project</h1>
 const NotFoundPage = () => <h1>404</h1>
 
+const IsLogin = localStorage.getItem("user") ? true : false
+
+
+const requireAuth = (nextState, replace) => {
+    if (!IsLogin) {
+      replace({
+        pathname: '/'
+      })
+    }
+}
+
+const isAuth = (nextState, replace) => {
+    if (IsLogin) {
+      replace({
+        pathname: '/users'
+      })
+    }
+}
+
 export const Router = () => (
     <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/about" component={About} />
-        <Route path="/posts" component={Post} />
-        <Route path="/projects" component={Project} />
-        <Route path="/users" component={User} />
-        <Route component={NotFoundPage} />
+        <Route exact path="/" component={Login} onEnter={isAuth}/>
+        <Route path="/about" component={About} onEnter={requireAuth}  />
+        <Route path="/posts" component={Post} onEnter={requireAuth}  />
+        <Route path="/projects" component={Project} onEnter={requireAuth} />
+        <Route path="/users" component={User} onEnter={requireAuth}  />
+        <Route component={NotFoundPage} onEnter={requireAuth} />
     </Switch>
 )

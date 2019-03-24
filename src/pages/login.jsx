@@ -1,11 +1,11 @@
-import React , {useState } from 'react';
+import React , {useState , useEffect } from 'react';
 import { Form, Icon, Input, Button, Card ,Layout} from 'antd';
 import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
-import { login ,authentication } from '../actions'
+import { authentication } from '../actions'
 const {  Content } = Layout;
-const Login = ({history,isLogin,counter,dispatch}) => {
+const Login = ({history,dispatch,isLogin}) => {
 
     const  handleSubmit = (e) => {
         console.log(`user`,user);
@@ -22,6 +22,14 @@ const Login = ({history,isLogin,counter,dispatch}) => {
         password: '' 
     });
 
+    
+    useEffect(() => {
+        console.log(`isLogin`,isLogin)
+        if(isLogin) {
+            history.push('/users');
+        }
+    },[]);
+
     const updateField = e => {
         setValues({
           ...user,
@@ -29,14 +37,10 @@ const Login = ({history,isLogin,counter,dispatch}) => {
         });
       };
 
-    
-    const clickCount = () => {
-        history.push('/users');
-    }
 
     return (
         <Layout style={{height:"100vh" , padding: '25vh 0'}}>
-            <Content>  {isLogin} {localStorage.getItem("user") }
+            <Content> 
                 <center>
                     <Card style={{ width: 450 }} title="BandSquare Admin">
                         <form  className="login-form" onSubmit={handleSubmit}>
@@ -70,7 +74,7 @@ const Login = ({history,isLogin,counter,dispatch}) => {
 const mapStateToProps =  (state) => {
     return {
       message: 'This is message from mapStateToProps',
-      isLogin: state.authentication || `false`,
+      isLogin: localStorage.getItem("user") ? true : false,
       counter: state.counters || 0
     }
   }
