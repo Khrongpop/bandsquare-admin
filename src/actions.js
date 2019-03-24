@@ -19,8 +19,16 @@ export const logout = () => ({
   type: 'LOGOUT',
 })
 
+export const FETCHUSERS = (users) => ({
+  type: 'FETCHUSERS',
+  users
+})
+
+
+const baseURL = `https://muangthesisapi.herokuapp.com/admin/`
+
 export const authentication = (user,dispatch) => {
-    axios.post(`https://muangthesisapi.herokuapp.com/auth/login`,user)
+    axios.post(`${baseURL}login`,user)
       .then((response) =>{
           console.log(response);
           dispatch(login(response.data));
@@ -28,4 +36,15 @@ export const authentication = (user,dispatch) => {
       .catch((error) => {
           console.log(error);
     })
+}
+
+export const fetchUsers = (dispatch) => {
+  axios.post(`${baseURL}get_user`)
+    .then((response) =>{
+        console.log(response);
+        dispatch(FETCHUSERS(response.data));
+    })
+    .catch((error) => {
+        console.log(error);
+  })
 }

@@ -3,7 +3,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 // import { Home } from './pages/home.js'
-import { User } from './pages/user'
+import  User  from './pages/user'
 import  Login  from './pages/login'
 
 const About = () => <h1>About</h1>
@@ -22,21 +22,21 @@ const requireAuth = (nextState, replace) => {
     }
 }
 
-const isAuth = (nextState, replace) => {
-    if (IsLogin) {
-      replace({
-        pathname: '/users'
-      })
-    }
-}
+// const isAuth = (nextState, replace) => {
+//     if (IsLogin) {
+//       replace({
+//         pathname: '/users'
+//       })
+//     }
+// }
 
 export const Router = () => (
     <Switch>
-        <Route exact path="/" component={Login} onEnter={isAuth}/>
-        <Route path="/about" component={About} onEnter={requireAuth}  />
-        <Route path="/posts" component={Post} onEnter={requireAuth}  />
-        <Route path="/projects" component={Project} onEnter={requireAuth} />
-        <Route path="/users" component={User} onEnter={requireAuth}  />
+        <Route exact path="/" component={Login}/>
+        <Route path="/about" component={About}  />
+        <Route path="/posts" component={Post}  />
+        <Route path="/projects" component={Project}  />
+        <Route path="/users" component={User}   />
         <Route component={NotFoundPage} onEnter={requireAuth} />
     </Switch>
 )

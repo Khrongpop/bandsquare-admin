@@ -1,8 +1,3 @@
-import axios from "axios";
-
-
-// import axios from './axiosConfig';
-
 export default (state = `false`,action) => {
     switch (action.type) {
       case 'LOGIN':
