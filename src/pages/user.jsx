@@ -22,7 +22,7 @@ export const App =  ({dispatch,users}) => {
   })
 
   return (
-    <Layout>
+    <Layout >
       <style jsx="true">{style}</style>
        <Table dataSource={users} columns={columns} /> 
     </Layout>

@@ -2300,6 +2300,11 @@ cosmiconfig@^5.0.0, cosmiconfig@^5.0.5, cosmiconfig@^5.0.7:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
+countup.js@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-1.9.3.tgz#ce3e50cd7160441e478f07da31895edcc0f1c9dd"
+  integrity sha1-zj5QzXFgRB5HjwfaMYle3MDxyd0=
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -7611,6 +7616,15 @@ react-app-polyfill@^0.2.1:
     promise "8.0.2"
     raf "3.4.1"
     whatwg-fetch "3.0.0"
+
+react-countup@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-countup/-/react-countup-4.1.1.tgz#4c8e70187ae07840cfd75bee29a0892e97d17c49"
+  integrity sha512-j9YFcCTFiJ1lDqn9JARk6pLfhV5bgEnVF0Ltmlf+j8z/uuOLoxHpsj9masgpfA72/8FHwLYssMFKUE4fngyTzQ==
+  dependencies:
+    countup.js "^1.9.3"
+    prop-types "^15.6.2"
+    warning "^4.0.2"
 
 react-dev-utils@^7.0.3:
   version "7.0.3"
