@@ -18,7 +18,7 @@ const NumberCard = ({ icon, color, title, number, countUp }) => {
           <CountUp
             start={0}
             end={number}
-            duration={2.75}
+            duration={1.75}
             useEasing
             useGrouping
             separator=","

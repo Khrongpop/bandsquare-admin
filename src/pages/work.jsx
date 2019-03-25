@@ -16,9 +16,10 @@ export const App =  ({dispatch,users,isLogin,history}) => {
 
   
   useEffect(() => {
+
     if(!isLogin) {
-      history.push('/');
-    }
+        history.push('/');
+      }
 
     if (users.length === 0){
       fetchUsers(dispatch)

@@ -1,9 +1,46 @@
 
 
-import React from 'react'
+import React ,{useEffect}from 'react'
 import Layout from '../layouts/default'
 import NumberCard from '../components/DashboradCard'
-import {Col} from 'antd'
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import {Col,Row} from 'antd'
+
+ const App = ({isLogin,history}) =>  { 
+  useEffect(() => {
+      console.log(`isLogin`,isLogin)
+      if(!isLogin) {
+          history.push('/');
+      }
+  });
+
+  return(
+    <Layout>
+      <div style={{padding: 24}}>
+        <Row gutter={24}>
+          {
+            dataSoure.map((item, key) => 
+              <Col  key={key} lg={6} md={12}>
+              <NumberCard icon={item.icon} title={item.title} number={item.number}  color ={item.color}/>
+              </Col>
+            )
+          }
+        </Row>
+      </div>
+    </Layout>
+  )
+}
+
+const mapStateToProps =  (state) => {
+  return {
+    isLogin: localStorage.getItem("user") ? true : false,
+    users: state.users || [],
+  }
+}
+
+const AppConnect = connect(mapStateToProps)(App)
+export default withRouter(AppConnect)
 
 const dataSoure = [
   {
@@ -31,21 +68,3 @@ const dataSoure = [
     color:{color : 'red'}
   }
 ]
-
-
-
- const App = () => (
-  <Layout>
-    <div style={{padding: 24}}>
-      {
-        dataSoure.map((item, key) => 
-          <Col  key={key} lg={6} md={12}>
-          <NumberCard icon={item.icon} title={item.title} number={item.number}  color ={item.color}/>
-          </Col>
-        )
-      }
-    </div>
-  </Layout>
-)
-
-export default App

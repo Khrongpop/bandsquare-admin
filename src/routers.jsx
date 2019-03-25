@@ -6,6 +6,8 @@ import { Route, Switch } from 'react-router-dom'
 import  User  from './pages/user'
 import  Dashboard  from './pages/dashboard'
 import  Login  from './pages/login'
+import  Work  from './pages/work'
+
 
 const About = () => <h1>About</h1>
 const Post = () => <h1>Post</h1>
@@ -36,7 +38,7 @@ export const Router = () => (
         <Route exact path="/" component={Login}/>
         <Route path="/dashboard" component={Dashboard}   />
         <Route path="/users" component={User}   />
-        <Route path="/about" component={About}  />
+        <Route path="/work" component={Work}  />
         <Route path="/posts" component={Post}  />
         <Route path="/projects" component={Project}  />
   

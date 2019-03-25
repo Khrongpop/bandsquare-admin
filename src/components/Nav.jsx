@@ -75,35 +75,34 @@ export const LeftNav = () => {
             </center>
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">
-            <NavLink exact to="/dashboard" >
-              <Icon type="dashboard" />
-              <span>Dashboard </span>
-            </NavLink>
-          </Menu.Item>
-
-          <Menu.Item key="2">
-            <NavLink exact to="/users" >
-              <Icon type="user" />
-              <span>User </span>
-            </NavLink>
-          </Menu.Item>
-    
-          <Menu.Item key="3">
-            <NavLink exact to="/about" >
-              <Icon type="video-camera" />
-              <span>about</span>
-            </NavLink>
-          </Menu.Item>
-    
-          <Menu.Item key="4">
-            <NavLink exact to="/posts" >
-              <Icon type="upload" />
-              <span>posts</span>
+         {dataSoure.map((item,index)=>
+            <Menu.Item key={index}>
+              <NavLink exact to={item.path} >
+                <Icon type={item.icon} />
+                <span> {item.title} </span>
               </NavLink>
-          </Menu.Item>
+            </Menu.Item>
+          )}
         </Menu>
     
     </Sider>
   )
 }
+const dataSoure = [
+  {
+    path: "/dashboard",
+    icon: "dashboard",
+    title: "Dashboard",
+  },
+  {
+    path: "/users",
+    icon: "user",
+    title: "User",
+  },
+  {
+    path: "/work",
+    icon: "video-camera",
+    title: "Work",
+  },
+  
+]
