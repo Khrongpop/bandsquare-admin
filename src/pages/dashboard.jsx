@@ -3,12 +3,13 @@
 import React from 'react'
 import { Counter } from '../components/Counter.js'
 import { Toggle } from '../components/Toggle.jsx'
+import Layout from '../layouts/default'
 
-
-export const Home = () => (
-  <div className="container">
+ const App = () => (
+  <Layout >
     <Counter message="Home"/>
     <Toggle/>
-  </div>
+  </Layout>
 )
 
+export default App

@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 // import { Home } from './pages/home.js'
 import  User  from './pages/user'
+import  Dashboard  from './pages/dashboard'
 import  Login  from './pages/login'
 
 const About = () => <h1>About</h1>
@@ -33,10 +34,12 @@ const requireAuth = (nextState, replace) => {
 export const Router = () => (
     <Switch>
         <Route exact path="/" component={Login}/>
+        <Route path="/dashboard" component={Dashboard}   />
+        <Route path="/users" component={User}   />
         <Route path="/about" component={About}  />
         <Route path="/posts" component={Post}  />
         <Route path="/projects" component={Project}  />
-        <Route path="/users" component={User}   />
+  
         <Route component={NotFoundPage} onEnter={requireAuth} />
     </Switch>
 )

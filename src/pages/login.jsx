@@ -26,7 +26,7 @@ const Login = ({history,dispatch,isLogin,auth}) => {
     useEffect(() => {
         console.log(`isLogin`,isLogin)
         if(isLogin) {
-            history.push('/users');
+            history.push('/dashboard');
         }
 
         console.log(`auth`,auth)
