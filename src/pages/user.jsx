@@ -23,8 +23,10 @@ export const App =  ({dispatch,users}) => {
 
   return (
     <Layout >
+      <div style={{padding: 24, background: '#fff'}}>
       <style jsx="true">{style}</style>
-       <Table dataSource={users} columns={columns} /> 
+       <Table dataSource={users} columns={columns} bordered/> 
+       </div>
     </Layout>
   )
 }

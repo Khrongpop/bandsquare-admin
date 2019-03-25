@@ -55,12 +55,13 @@ export  default withRouter(AppNavBar)
 export const LeftNav = () => {
     const style ={
       widht: 100 ,
-      height: 60
+      height: 60,
+      marginBottom: 23
     }
     const style_logo = {
       widht: 50 ,
       height: 50,
-      marginTop: 5  ,
+      marginTop: 5,
     }
     return (
       <Sider

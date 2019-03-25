@@ -26,7 +26,7 @@ const App =  ({children,history}) => {
             <Layout>
             <NavBar/>
             <Content style={{
-                margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,
+                margin: '24px 16px', minHeight: 800,
             }}
             >
                 {children}

@@ -2,19 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Icon, Card } from 'antd'
 import CountUp from 'react-countup'
-import styles from './numberCard.less'
+// import styles from './numberCard.less'
 
 const NumberCard = ({ icon, color, title, number, countUp }) => {
   return (
     <Card
-      className={styles.numberCard}
+     
       bordered={false}
       bodyStyle={{ padding: 10 }}
     >
-      <Icon className={styles.iconWarp} style={{ color }} type={icon} />
-      <div className={styles.content}>
-        <p className={styles.title}>{title || 'No Title'}</p>
-        <p className={styles.number}>
+      <Icon style={ color } type={icon} />
+      <div >
+        <p >{title || 'No Title'}</p>
+        <p >
           <CountUp
             start={0}
             end={number}
