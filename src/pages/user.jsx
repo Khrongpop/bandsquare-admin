@@ -8,25 +8,34 @@ import { withRouter } from 'react-router-dom';
 import { fetchUsers } from '../actions'
 
 
+const style = `
+  img { object-fit: cover; }
+`
+
 export const App =  ({dispatch,users}) => {  
 
   
   useEffect(() => {
-    fetchUsers(dispatch)
-  },[])
+    if (users.length === 0){
+      fetchUsers(dispatch)
+    }
+  })
 
   return (
     <Layout>
+      <style jsx="true">{style}</style>
        <Table dataSource={users} columns={columns} /> 
     </Layout>
   )
 }
+
 const mapStateToProps =  (state) => {
   return {
     isLogin: localStorage.getItem("user") ? true : false,
     users: state.users || [],
   }
 }
+
 const AppConnect = connect(mapStateToProps)(App)
 export default withRouter(AppConnect)
 
@@ -34,7 +43,7 @@ const columns = [
 {
     title: 'Image',
     dataIndex: 'image',
-    key: 'image',
+    id: 'image',
     render: image => <Avatar size="large" src={image} />,
 },
 {

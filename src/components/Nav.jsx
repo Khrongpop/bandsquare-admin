@@ -4,10 +4,13 @@ import { Layout , Menu , Avatar , Icon } from 'antd';
 import {  NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
+
 const { Header , Sider} = Layout;
 const { SubMenu } = Menu
 
 
+const logo_w = 'https://firebasestorage.googleapis.com/v0/b/thesis-4ef45.appspot.com/o/image%2Fusers%2Flogo_tran.png?alt=media&token=e8742ea6-f159-4a9a-9980-af85f0f18b91'
+// const logo_color = 'https://firebasestorage.googleapis.com/v0/b/thesis-4ef45.appspot.com/o/image%2Fusers%2Flogo_full.png?alt=media&token=14d31cdb-cbd8-4528-a51a-13f9cca6259c'
 
 export const NavBar = ({history,currentUser}) =>  {
   const  logout = () => {
@@ -50,14 +53,26 @@ const AppNavBar = connect(mapStateToProps)(NavBar)
 export  default withRouter(AppNavBar)
 
 export const LeftNav = () => {
-  
+    const style ={
+      widht: 100 ,
+      height: 60
+    }
+    const style_logo = {
+      widht: 50 ,
+      height: 50,
+      marginTop: 5  ,
+    }
     return (
       <Sider
       trigger={null}
       collapsible
       collapsed={false}
     >
-        <div className="logo" />
+        <div className="logo" style={style}> 
+            <center>
+               <img src={logo_w} alt=""  style={style_logo}/>
+            </center>
+        </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
             <NavLink exact to="/users" >
