@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toggle } from '../actions'
 
 const App = ({  toggle, dispatch }) => (
     <div className="container">

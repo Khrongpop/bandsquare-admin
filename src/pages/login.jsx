@@ -43,7 +43,7 @@ const Login = ({history,dispatch,isLogin,auth}) => {
 
     return (
         <Layout style={{height:"100vh" , padding: '25vh 0'}}>
-            <Content> {auth}
+            <Content> 
                 <center> 
                     <Card style={{ width: 450 }} title="BandSquare Admin">
                         <form  className="login-form" onSubmit={handleSubmit}>
