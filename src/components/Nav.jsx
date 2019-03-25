@@ -68,7 +68,7 @@ export const LeftNav = () => {
       trigger={null}
       collapsible
       collapsed={false}
-    >
+    > <div style={{position:"fixed",width:200}}> 
         <div className="logo" style={style}> 
             <center>
                <img src={logo_w} alt=""  style={style_logo}/>
@@ -84,7 +84,7 @@ export const LeftNav = () => {
             </Menu.Item>
           )}
         </Menu>
-    
+        </div>
     </Sider>
   )
 }

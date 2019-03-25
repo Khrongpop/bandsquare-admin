@@ -84,7 +84,7 @@ const columns = [
     title: 'วันเวลา',
     key: 'date_time',
     render: work => (
-          <span> {work.date} : {work.time}</span>
+          <span> {getDateTime(work)}</span>
       ),
 },
  {
@@ -117,6 +117,10 @@ const getBandinfo = (parm) => {
     return <span>
         ยังไม่มีวงดนตรี
     </span>
+}
+
+const getDateTime = (work) => {
+    return work.date
 }
 
 const getURL = (parm) => {
