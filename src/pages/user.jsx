@@ -1,8 +1,8 @@
 
 
-import React , {useEffect , useReducer} from 'react'
+import React , {useEffect} from 'react'
 import Layout from '../layouts/default'
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag , Avatar} from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios'
@@ -50,48 +50,45 @@ export const App =  ({dispatch,users}) => {
   //   })
   },[])
 
+
   return (
     <Layout>
-        {users}
-        {/*  <Table dataSource={dataSource} columns={columns} /> */}
+       <Table dataSource={users} columns={columns} /> 
     </Layout>
   )
 }
 const mapStateToProps =  (state) => {
   return {
     isLogin: localStorage.getItem("user") ? true : false,
-    users: state.users || ``,
+    users: state.users || [],
   }
 }
 const AppConnect = connect(mapStateToProps)(App)
 export default withRouter(AppConnect)
 
-const columns = [{
+const columns = [
+{
+    title: 'Image',
+    dataIndex: 'image',
+    key: 'image',
+    render: image => <Avatar size={64} src={image} />,
+},
+{
   title: 'Name',
   dataIndex: 'name',
   key: 'name',
   render: text => <span>{text}</span>,
 }, {
-  title: 'Age',
-  dataIndex: 'age',
-  key: 'age',
+  title: 'Email',
+  dataIndex: 'email',
+  key: 'email',
 }, {
-  title: 'Address',
-  dataIndex: 'address',
-  key: 'address',
-}, {
-  title: 'Tags',
-  key: 'tags',
-  dataIndex: 'tags',
-  render: tags => (
+  title: 'Role',
+  key: 'role_id',
+  dataIndex: 'role_id',
+  render: role => (
     <span>
-      {tags.map(tag => {
-        let color = tag.length > 5 ? 'geekblue' : 'green';
-        if (tag === 'loser') {
-          color = 'volcano';
-        }
-        return <Tag color={color} key={tag}>{tag.toUpperCase()}</Tag>;
-      })}
+      <Tag color={role === 1 ? 'geekblue' : 'green'} >{role === 1 ? `Member` : `Musicain`}</Tag>
     </span>
   ),
 }, {
