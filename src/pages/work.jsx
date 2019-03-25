@@ -5,14 +5,14 @@ import Layout from '../layouts/default'
 import { Table, Divider, Tag , Avatar} from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import { fetchUsers } from '../actions'
+import { fetchWorks } from '../actions'
 
 
 const style = `
   img { object-fit: cover; }
 `
 
-export const App =  ({dispatch,users,isLogin,history}) => {  
+export const App =  ({dispatch,works,isLogin,history}) => {  
 
   
   useEffect(() => {
@@ -21,8 +21,8 @@ export const App =  ({dispatch,users,isLogin,history}) => {
         history.push('/');
       }
 
-    if (users.length === 0){
-      fetchUsers(dispatch)
+    if (works.length === 0){
+      fetchWorks(dispatch)
     }
   })
 
@@ -30,7 +30,8 @@ export const App =  ({dispatch,users,isLogin,history}) => {
     <Layout >
       <div style={{padding: 24, background: '#fff'}}>
       <style jsx="true">{style}</style>
-          <Table dataSource={users} columns={columns} bordered/> 
+       <Table dataSource={works} columns={columns} bordered/>
+        {/*  <Table dataSource={users} columns={columns} bordered/> */}
       </div>
     </Layout>
   )
@@ -39,7 +40,7 @@ export const App =  ({dispatch,users,isLogin,history}) => {
 const mapStateToProps =  (state) => {
   return {
     isLogin: localStorage.getItem("user") ? true : false,
-    users: state.users || [],
+    works: state.works || [],
   }
 }
 
@@ -48,37 +49,130 @@ export default withRouter(AppConnect)
 
 const columns = [
 {
-    title: 'Image',
-    dataIndex: 'image',
-    id: 'image',
-    render: image => <Avatar size="large" src={image} />,
+    title: 'ไอดี',
+    dataIndex: 'id',
+    id: 'id',
+    render: text => <span>{text*7531}</span>,
 },
 {
-  title: 'Name',
-  dataIndex: 'name',
-  key: 'name',
-  render: text => <span>{text}</span>,
-}, {
-  title: 'Email',
-  dataIndex: 'email',
-  key: 'email',
-}, {
-  title: 'Role',
-  key: 'role_id',
-  dataIndex: 'role_id',
-  render: role => (
+    title: 'ผู้จ้าง',
+    key: 'user.name',
+    render: item =>  ( 
+      <span>
+        <Avatar size="medium" src={item.user.image}></Avatar>
+        <span>{item.user.name}</span>
+      </span>
+    ),
+  }, 
+  {
+    title: 'วงดนตรี',
+    key: 'band.user.name',
+    render: item =>  ( 
+      getBandinfo(item)
+    ),
+  },
+{
+    title: 'สถานที่',
+    key: 'location',
+    render: work => (
+       <a  target="_blank" href={getURL(work)} >
+            {work.location}
+       </a>
+    ),
+},
+{
+    title: 'วันเวลา',
+    key: 'date_time',
+    render: work => (
+          <span> {work.date} : {work.time}</span>
+      ),
+},
+ {
+  title: 'ประเภทงาน',
+  key: 'category_id',
+  dataIndex: 'category_id',
+  render: category_id => (
     <span>
-      <Tag color={role === 1 ? 'geekblue' : 'green'} >{role === 1 ? `Member` : `Musicain`}</Tag>
+      <Tag color={getCategoryColor(category_id)} >{getCategoryTitle(category_id)}</Tag>
     </span>
   ),
 }, {
-  title: 'Action',
-  key: 'action',
-  render: (text, record) => (
+  title: 'ประเภทดนตรี',
+  key: 'type_id',
+  dataIndex: 'type_id',
+  render: type_id => (
     <span>
-      <span>Invite {record.name}</span>
-      <Divider type="vertical" />
-      <span >Delete</span>
+      <Tag color={getTypeColor(type_id)} >{getTypeTitle(type_id)}</Tag>
     </span>
   ),
 }];
+
+const getBandinfo = (parm) => {
+    if(parm.band) {
+        return <span>
+            <Avatar size="medium" src={parm.band.user.image}></Avatar>
+            <span>{parm.band.user.name}</span>
+          </span>
+    }
+    return <span>
+        ยังไม่มีวงดนตรี
+    </span>
+}
+
+const getURL = (parm) => {
+    let url = "https://www.google.co.th/maps/search/"
+    let splits = parm.location.split(" ")
+    splits.forEach(text => {
+        url += text+'+'
+    });
+    url = url + `/@${parm.latitude},${parm.longitude},17z`
+    return url
+}
+
+const getCategoryColor = (category_id) => {
+    if (category_id === 1) {
+        return 'magenta'
+    } else if (category_id === 2) {
+        return 'green'
+    } else if (category_id === 2) {
+        return 'volcano'
+    }  
+    return 'blue'
+}
+
+const getCategoryTitle = (category_id) => {
+    if (category_id === 1) {
+        return 'งานแต่งงาน'
+    } else if (category_id === 2) {
+        return 'อีเว้นท์'
+    } else if (category_id === 2) {
+        return 'ปาร์ตี้'
+    }  
+    return 'อื่นๆ'
+}
+
+const getTypeColor = (type_id) => {
+    if (type_id === 1) {
+        return 'red'
+    } else if (type_id === 2) {
+        return 'purple'
+    } else if (type_id === 3) {
+        return 'volcano'
+    }  else if (type_id === 4) {
+        return 'cyan'
+    }  
+    return 'orange'
+}
+
+const getTypeTitle = (type_id) => {
+    if (type_id === 1) {
+        return 'อะคูสติก'
+    } else if (type_id === 2) {
+        return 'ฟูลแบนด์'
+    } else if (type_id === 3) {
+        return 'ดีเจ'
+    }  else if (type_id === 4) {
+        return 'สตริง'
+    }  
+    return 'แจส'
+}

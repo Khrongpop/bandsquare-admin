@@ -14,6 +14,12 @@ export const FETCHUSERS = (users) => ({
   users
 })
 
+export const FETCHWORKS = (works) => ({
+  type: 'FETCHWORKS',
+  works
+})
+
+
 
 const baseURL = `https://muangthesisapi.herokuapp.com/admin/`
 
@@ -33,6 +39,17 @@ export const fetchUsers = (dispatch) => {
     .then((response) =>{
         console.log(response);
         dispatch(FETCHUSERS(response.data));
+    })
+    .catch((error) => {
+        console.log(error);
+  })
+}
+
+export const fetchWorks = (dispatch) => {
+  axios.post(`${baseURL}get_works`)
+    .then((response) =>{
+        console.log(response);
+        dispatch(FETCHWORKS(response.data));
     })
     .catch((error) => {
         console.log(error);
