@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux'
 import { authentication } from '../actions'
+import { Auth } from '../routers'
 const {  Content } = Layout;
 const Login = ({history,dispatch,isLogin,auth}) => {
 
@@ -12,8 +13,6 @@ const Login = ({history,dispatch,isLogin,auth}) => {
         let parm = new FormData()
         parm.append("name", user.name);
         parm.append("password", user.password);
-        // dispatch(login(parm,dispatch))
-        // dispatch(authentication(parm))
         authentication(parm,dispatch)
     }
 
@@ -26,6 +25,7 @@ const Login = ({history,dispatch,isLogin,auth}) => {
     useEffect(() => {
         console.log(`isLogin`,isLogin)
         if(isLogin) {
+            Auth.isLogin = true
             history.push('/dashboard');
         }
 
@@ -77,9 +77,8 @@ const Login = ({history,dispatch,isLogin,auth}) => {
 const mapStateToProps =  (state) => {
     return {
       message: 'This is message from mapStateToProps',
-      isLogin: localStorage.getItem("user") ? true : false,
+      isLogin: localStorage.getItem("adminBSuser") ? true : false,
       auth: state.authentication,
-      counter: state.counters || 0
     }
   }
 const App = connect(mapStateToProps)(Login)

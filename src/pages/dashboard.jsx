@@ -1,19 +1,13 @@
 
 
-import React ,{useEffect}from 'react'
+import React from 'react'
 import Layout from '../layouts/default'
 import NumberCard from '../components/DashboradCard'
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import {Col,Row} from 'antd'
 
- const App = ({isLogin,history}) =>  { 
-  useEffect(() => {
-      console.log(`isLogin`,isLogin)
-      if(!isLogin) {
-          history.push('/');
-      }
-  });
+ const App = () =>  { 
 
   return(
     <Layout>
@@ -34,7 +28,7 @@ import {Col,Row} from 'antd'
 
 const mapStateToProps =  (state) => {
   return {
-    isLogin: localStorage.getItem("user") ? true : false,
+    isLogin: localStorage.getItem("adminBSuser") ? true : false,
     users: state.users || [],
   }
 }

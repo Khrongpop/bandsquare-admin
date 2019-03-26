@@ -2,7 +2,7 @@
 
 import React , {useEffect} from 'react'
 import Layout from '../layouts/default'
-import { Table, Divider, Tag , Avatar} from 'antd';
+import { Table, Tag , Avatar} from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { fetchWorks } from '../actions'
@@ -12,14 +12,10 @@ const style = `
   img { object-fit: cover; }
 `
 
-export const App =  ({dispatch,works,isLogin,history}) => {  
+export const App =  ({dispatch,works}) => {  
 
   
   useEffect(() => {
-
-    if(!isLogin) {
-        history.push('/');
-      }
 
     if (works.length === 0){
       fetchWorks(dispatch)
@@ -39,7 +35,7 @@ export const App =  ({dispatch,works,isLogin,history}) => {
 
 const mapStateToProps =  (state) => {
   return {
-    isLogin: localStorage.getItem("user") ? true : false,
+    isLogin: localStorage.getItem("adminBSuser") ? true : false,
     works: state.works || [],
   }
 }
@@ -75,7 +71,7 @@ const columns = [
     title: 'สถานที่',
     key: 'location',
     render: work => (
-       <a  target="_blank" href={getURL(work)} >
+       <a  rel="noopener noreferrer" href={getURL(work)} >
             {work.location}
        </a>
     ),

@@ -12,14 +12,10 @@ const style = `
   img { object-fit: cover; }
 `
 
-export const App =  ({dispatch,users,isLogin,history}) => {  
+export const App =  ({dispatch,users}) => {  
 
   
   useEffect(() => {
-    if(!isLogin) {
-      history.push('/');
-    }
-
     if (users.length === 0){
       fetchUsers(dispatch)
     }
@@ -37,7 +33,7 @@ export const App =  ({dispatch,users,isLogin,history}) => {
 
 const mapStateToProps =  (state) => {
   return {
-    isLogin: localStorage.getItem("user") ? true : false,
+    isLogin: localStorage.getItem("usadminBSuserr") ? true : false,
     users: state.users || [],
   }
 }
