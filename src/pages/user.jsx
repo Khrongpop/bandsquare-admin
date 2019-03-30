@@ -2,7 +2,7 @@
 
 import React , {useEffect} from 'react'
 import Layout from '../layouts/default'
-import { Table, Divider, Tag , Avatar} from 'antd';
+import { Table, Divider, Tag , Avatar , Popconfirm , Button} from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { fetchUsers } from '../actions'
@@ -73,7 +73,14 @@ const columns = [
     <span>
       <span>Invite {record.name}</span>
       <Divider type="vertical" />
-      <span >Delete</span>
+      <Popconfirm placement="right" title={`คุณต้องการลบ ${record.name} ?`} onConfirm={confirm(record.id)} okText="ลบ" cancelText="ยกเลิก">
+        <Button>Delete</Button>
+     </Popconfirm>
     </span>
   ),
 }];
+
+const confirm = (id) => {
+  // message.info('Clicked on Yes.');
+  console.log("id",id);
+}
