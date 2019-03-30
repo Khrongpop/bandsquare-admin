@@ -13,8 +13,8 @@ const NumberCard = ({ icon, color, title, number, countUp }) => {
     >
       <Icon style={ color } type={icon} />
       <div >
-        <p >{title || 'No Title'}</p>
-        <p >
+        <p style= {titleStype}>{title || 'No Title'}</p> <br/><br/>
+        <p style= {numStype}>
           <CountUp
             start={0}
             end={number}
@@ -28,6 +28,23 @@ const NumberCard = ({ icon, color, title, number, countUp }) => {
       </div>
     </Card>
   )
+}
+const titleStype = {
+ 
+  paddingLeft : '10px',
+  paddingTop : '5px',
+  fontSize: 15,
+  fontFamily: 'Kanit',
+  float:'left'
+}
+
+const numStype = {
+ 
+  paddingLeft : '10px',
+  fontSize: 30,
+  fontFamily: 'Kanit',
+  lineHeight: '.3',
+  float:'left'
 }
 
 NumberCard.propTypes = {

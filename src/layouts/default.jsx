@@ -1,4 +1,4 @@
-import React ,{useEffect}  from 'react'
+import React   from 'react'
 import { Layout, } from 'antd';
 import NavBar  from '../components/Nav'
 import LeftNav  from '../components/LeftNav'
@@ -8,17 +8,8 @@ import 'antd/dist/antd.css';
 const { Content } = Layout;
   
 
-const App =  ({children,history}) => {
+const App =  ({children}) => {
 
-    useEffect(() => {
-        let isLogin = localStorage.getItem("adminBSuser") ? true : false
-
-        console.log(`isLogin`,isLogin)
-        if(!isLogin) {
-            history.push('/');
-        }
-
-    });
 
     return (
         

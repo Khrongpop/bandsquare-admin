@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { fetchWorks } from '../actions'
 
-
 const style = `
   img { object-fit: cover; }
 `
@@ -71,7 +70,7 @@ const columns = [
     title: 'สถานที่',
     key: 'location',
     render: work => (
-       <a  rel="noopener noreferrer" href={getURL(work)} >
+       <a  rel="noopener noreferrer" href={getURL(work)} target="_blank" >
             {work.location}
        </a>
     ),

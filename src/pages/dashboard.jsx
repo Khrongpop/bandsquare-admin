@@ -41,24 +41,40 @@ const dataSoure = [
     icon:"user",
     title:"ผู้ใช้งานทั้งหมด",
     number:"2000",
-    color:{color : 'red'}
+    color:{
+      color : '#4910C6',
+      float: 'left',
+      fontSize: 75
+    }
   },
   {
     icon:"idcard",
     title:"นักดนตรี",
     number:"700",
-    color:{color : 'red'}
+    color:{
+      color : '#4910C6',
+      float: 'left',
+      fontSize: 75
+    }
   },
   {
     icon:"file-done",
     title:"งานที่เสร็จสิ้น",
     number:"2500",
-    color:{color : 'red'}
+    color:{
+      color : '#4910C6',
+      float: 'left',
+      fontSize: 75
+    }
   },
   {
     icon:"file-sync",
     title:"งานที่กำลังทำ",
     number:"4000",
-    color:{color : 'red'}
+    color:{
+      color : '#4910C6',
+      float: 'left',
+      fontSize: 75
+    }
   }
 ]
