@@ -2,10 +2,10 @@
 
 import React , {useEffect} from 'react'
 import Layout from '../layouts/default'
-import { Table, Divider, Tag , Avatar , Popconfirm , Button} from 'antd';
+import { Table, Tag , Avatar , Popconfirm , Button} from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import { fetchUsers } from '../actions'
+import { fetchUsers , removeUser } from '../actions'
 
 
 const style = `
@@ -69,18 +69,18 @@ const columns = [
 }, {
   title: 'Action',
   key: 'action',
-  render: (text, record) => (
+  render:  record => (
     <span>
-      <span>Invite {record.name}</span>
-      <Divider type="vertical" />
-      <Popconfirm placement="right" title={`คุณต้องการลบ ${record.name} ?`} onConfirm={confirm(record.id)} okText="ลบ" cancelText="ยกเลิก">
-        <Button>Delete</Button>
+      <Popconfirm placement="right" title={`คุณต้องการลบ ${record.name} ?`}  onConfirm={() => confirm(record.id)} okText="ลบ" cancelText="ยกเลิก">
+        <Button >Delete</Button>
      </Popconfirm>
     </span>
   ),
 }];
 
 const confirm = (id) => {
-  // message.info('Clicked on Yes.');
   console.log("id",id);
+  let parm = new FormData()
+  parm.append('user_id',id)
+  removeUser(parm)
 }

@@ -21,7 +21,7 @@ export const FETCHWORKS = (works) => ({
 
 
 
-const baseURL = `https://muangthesisapi.herokuapp.com/admin/`
+const baseURL = `https://muangapi.herokuapp.com/admin/`
 
 export const authentication = (user,dispatch) => {
     axios.post(`${baseURL}login`,user)
@@ -53,5 +53,16 @@ export const fetchWorks = (dispatch) => {
     })
     .catch((error) => {
         console.log(error);
+  })
+}
+
+export const removeUser = (parm) => {
+  console.log(parm);
+  return axios.post(`${baseURL}remove_user`,parm)
+    .then((response) =>{
+      console.log(response.data);
+    })
+    .catch((error) => {
+      return (error);
   })
 }
