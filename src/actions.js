@@ -57,10 +57,10 @@ export const fetchWorks = (dispatch) => {
 }
 
 export const removeUser = (parm) => {
-  console.log(parm);
+  // console.log(parm);
   return axios.post(`${baseURL}remove_user`,parm)
     .then((response) =>{
-      console.log(response.data);
+      return (response.data);
     })
     .catch((error) => {
       return (error);

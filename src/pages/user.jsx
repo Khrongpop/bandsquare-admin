@@ -82,5 +82,11 @@ const confirm = (id) => {
   console.log("id",id);
   let parm = new FormData()
   parm.append('user_id',id)
-  removeUser(parm)
+  removeUser(parm).then(res => {
+    console.log(res);
+    if(res.status == 200) {
+      console.log("remove 200")
+      // fetchUsers(dispatch)
+    }
+  })
 }
