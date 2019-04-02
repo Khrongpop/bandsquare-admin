@@ -100,7 +100,18 @@ const columns = [
       <Tag color={getTypeColor(type_id)} >{getTypeTitle(type_id)}</Tag>
     </span>
   ),
+}, {
+  title: 'สถานะ',
+  key: 'status',
+  dataIndex: 'status',
+  render: status => (
+    <span>
+       {getStatusTitle(status)}
+  
+    </span>
+  ),
 }];
+
 
 const getBandinfo = (parm) => {
     if(parm.band) {
@@ -115,7 +126,7 @@ const getBandinfo = (parm) => {
 }
 
 const getDateTime = (work) => {
-    return work.date
+    return work.date + ' : ' + work.time
 }
 
 const getURL = (parm) => {
@@ -174,4 +185,18 @@ const getTypeTitle = (type_id) => {
         return 'สตริง'
     }  
     return 'แจส'
+}
+
+
+const getStatusTitle = (status) => {
+  if (status === 0) {
+      return 'รอวงดนตรีตอบรับ'
+  } else if (status === 2) {
+      return 'เลือกวงดนตรี'
+  } else if (status === 3) {
+      return 'รอชำระเงิน'
+  }  else if (status === 4) {
+      return 'ทำงาน'
+  }  
+  return 'เสร็จสิ้น'
 }
